@@ -1,0 +1,252 @@
+# 예시 여행 1: 커플 부산 2박 3일 (지어낸 여행자, 장소 정보는 2026-10-09 웹 확인)
+trip:
+  title: 바다 보러 가는 부산
+  kicker: 둘이 떠나는
+  tagline: 바다, 야경, 해산물 2박 3일
+  destination: 부산
+  start: 2026-11-13
+  end: 2026-11-15
+  currency: KRW
+  checked: 2026-10-09
+  stale_days: 60
+  header_photo: gwangalli
+  poster_kicker: 둘이 떠나는
+  poster_title: 부산 2박 3일 여행 일정
+  note_card: [바다 보고, 야경 보고, 해산물 먹고, '천천히 걷기 :)']
+  photo_dir: photos
+  audits: ["2026-10-09 공개 자료 원문 대조"]
+
+travelers:
+  - {label: 어른 1, age: 33}
+  - {label: 어른 2, age: 32, notes: 매운 음식 못 먹음}
+
+holidays: []
+
+arrival:
+  date: 2026-11-13
+  time: "10:00"
+  place: busan_sta
+  note: (예시 시각) 서울역 출발 KTX, 부산역 도착. 실제 열차는 승차권으로 확인
+
+departure:
+  date: 2026-11-15
+  time: "17:00"
+  place: busan_sta
+  arrive_by: "16:30"
+  buffer_min: 20
+  note: (예시 시각) 서울행 KTX 17시대, 열차 시각은 승차권으로 확인
+
+places:
+  busan_sta:
+    name: 부산역
+    local: 부산역
+    kind: 교통
+    icon: 기차
+    lat: 35.1152
+    lon: 129.0422
+    coord_note: 위키데이터 Q53118 과 58m (2026-10-10 확인)
+    base: true
+    checked: 2026-10-09
+  hotel:
+    name: 예시 숙소 (해운대역 근처)
+    local: 예시 숙소
+    kind: 숙소
+    coord_note: 동네 대표점(공공장소) 좌표 — 실제 숙소가 아닌 예시
+    lat: 35.1634
+    lon: 129.1586
+    address_local: 부산광역시 해운대구 해운대해변로 일대 (예)
+    phone: "051-000-0000 (예시)"
+    checked: 2026-10-09
+  haeundae_market:
+    name: 해운대 전통시장
+    photo: haeundae_market
+    local: 해운대시장
+    kind: 식사
+    icon: 시장
+    lat: 35.1622
+    lon: 129.1614
+    coord_note: 위키데이터 Q129677514 와 121m (2026-10-10 확인)
+    open_air: true
+    note: 점포마다 영업시간이 다르다. 매운 양념 없는 메뉴(어묵, 회, 물회 대신 회덮밥 양념 따로)로 고르기
+    checked: 2026-10-09
+  mipo:
+    name: 블루라인파크 미포정거장
+    local: 해운대 블루라인파크 해변열차
+    kind: 관광
+    icon: 기차
+    lat: 35.1585
+    lon: 129.1717
+    hours: ["09:00", "19:00"]
+    reservation: {required: false, status: 미완료, note: 현장 발권 가능, 주말은 온라인 예매 권장}
+    note: 11월~2월 해변열차 09:00~19:00, 미포~송정 편도 약 25분
+    source: https://www.trvlogue.com/ko/busan-haeundae-blueline-park-booking-guide
+    checked: 2026-10-09
+  cheongsapo:
+    name: 청사포
+    photo: cheongsapo
+    local: 청사포
+    kind: 관광
+    icon: 공원
+    lat: 35.1608
+    lon: 129.1912
+    open_air: true
+    note: 다릿돌전망대와 등대 쪽 산책
+    checked: 2026-10-09
+  gwangalli:
+    name: 광안리 해수욕장
+    photo: gwangalli
+    local: 광안리해수욕장
+    kind: 관광
+    icon: 공원
+    lat: 35.1532
+    lon: 129.1186
+    coord_note: 위키데이터 Q495370 과 208m(해변 중앙) (2026-10-10 확인)
+    open_air: true
+    note: 광안대교 야경. 해변 쪽 저녁 식당이 많다
+    checked: 2026-10-09
+  gamcheon:
+    name: 감천문화마을
+    photo: gamcheon
+    local: 감천문화마을
+    kind: 관광
+    icon: 전망대
+    lat: 35.0975
+    lon: 129.0106
+    hours: ["09:00", "17:00"]
+    note: 11월~2월 09:00~17:00, 마을 안은 계단과 비탈이 많다. 안내센터에서 골목 지도
+    source: https://www.busan.go.kr/nbanser/32780?curPage=30
+    checked: 2026-10-09
+  jagalchi:
+    name: 자갈치시장
+    photo: jagalchi
+    local: 자갈치시장
+    kind: 식사
+    icon: 시장
+    lat: 35.0966
+    lon: 129.0306
+    hours: ["05:00", "22:00"]
+    note: 매월 첫째·셋째·다섯째 화요일 휴무(운영 기관 공지). 2층 회센터에서 점심
+    source: https://www.bisco.or.kr/jagalchimarket/sub/sub02/sub02_1/
+    checked: 2026-10-09
+  gukje:
+    name: 국제시장
+    photo: gukje
+    local: 국제시장
+    kind: 쇼핑
+    icon: 시장
+    lat: 35.1017
+    lon: 129.0283
+    coord_note: 위키데이터 Q12585885 와 82m (2026-10-10 확인)
+    open_air: true
+    note: 점포마다 영업시간이 다르다
+    checked: 2026-10-09
+  huinnyeoul:
+    name: 흰여울문화마을
+    photo: huinnyeoul
+    local: 흰여울문화마을
+    kind: 관광
+    icon: 공원
+    lat: 35.0785
+    lon: 129.0447
+    coord_note: 근사 좌표, 공개 대표 좌표 못 찾음(가기 전 지도로 확인) (2026-10-10 확인)
+    open_air: true
+    note: 바다 절벽 위 골목. 주민이 사는 곳이라 조용히
+    checked: 2026-10-09
+  haeundae_beach:
+    name: 해운대 해수욕장
+    photo: haeundae_beach
+    local: 해운대해수욕장
+    kind: 관광
+    icon: 공원
+    lat: 35.1587
+    lon: 129.1604
+    coord_note: 위키데이터 Q491203 과 21m (2026-10-10 확인)
+    open_air: true
+    checked: 2026-10-09
+  yonggungsa:
+    name: 해동용궁사
+    photo: yonggungsa
+    local: 해동용궁사
+    kind: 관광
+    icon: 절
+    lat: 35.1883
+    lon: 129.2233
+    hours: ["04:30", "19:20"]
+    note: 입장료 무료, 입구에서 절까지 계단 108개. 마지막 입장 18:50(부산 공식 관광 안내). 절 자체 공지는 가기 전 확인
+    source: https://www.visitbusan.net/index.do?contentsSid=22&lang_cd=ko&uc_seq=261
+    checked: 2026-10-09
+  songjeong:
+    name: 송정해수욕장
+    photo: songjeong
+    local: 송정해수욕장
+    kind: 식사
+    icon: 공원
+    lat: 35.1785
+    lon: 129.2001
+    coord_note: 한국어 위키백과 송정해수욕장(부산) 대표점과 약 350m(해변 안) (2026-10-10 확인)
+    open_air: true
+    note: 해변 앞 식당과 카페에서 점심
+    checked: 2026-10-09
+
+days:
+  - date: 2026-11-13
+    title: 해운대와 광안리
+    subtitle: 해변열차 타고 청사포, 저녁엔 광안대교 야경
+    items:
+      - {time: "10:00", stay: 10, place: busan_sta, what: KTX 도착}
+      - {time: "11:00", stay: 15, place: hotel, what: 짐 맡기기, go: {mode: 지하철, minutes: 50}}
+      - {time: "11:30", stay: 60, place: haeundae_market, what: 시장 점심, go: {mode: 걷기, minutes: 10}}
+      - {time: "12:50", stay: 10, place: mipo, what: 해변열차 타기 (청사포까지), go: {mode: 걷기, minutes: 15}}
+      - {time: "13:30", stay: 90, place: cheongsapo, what: 등대와 다릿돌전망대 산책, alt: 바람 세면 열차로 송정까지 가서 카페, go: {mode: 해변열차, minutes: 15}}
+      - {time: "15:30", stay: 120, place: hotel, what: 체크인과 쉬기, go: {mode: 택시, minutes: 20}}
+      - {time: "18:00", stay: 150, place: gwangalli, what: 저녁과 광안대교 야경, go: {mode: 택시, minutes: 20}}
+      - {time: "20:50", stay: 0, place: hotel, what: 숙소, go: {mode: 택시, minutes: 20}}
+  - date: 2026-11-14
+    title: 원도심 골목과 시장
+    subtitle: 알록달록 감천, 자갈치 점심, 흰여울 바다 골목
+    items:
+      - {time: "09:40", stay: 110, place: gamcheon, what: 골목 산책과 사진, note: 계단이 많으니 편한 신발, go: {mode: 택시, minutes: 40}}
+      - {time: "12:00", stay: 70, place: jagalchi, what: 회센터 점심, go: {mode: 택시, minutes: 20}}
+      - {time: "13:20", stay: 60, place: gukje, what: 시장 구경, go: {mode: 걷기, minutes: 10}}
+      - {time: "14:50", stay: 90, place: huinnyeoul, what: 바다 절벽 골목 산책, go: {mode: 택시, minutes: 20}}
+      - {time: "17:30", stay: 120, place: haeundae_beach, what: 저녁과 해변 야경, go: {mode: 택시, minutes: 50}}
+      - {time: "19:40", stay: 0, place: hotel, what: 숙소, go: {mode: 걷기, minutes: 10}}
+  - date: 2026-11-15
+    title: 바다 절과 송정
+    subtitle: 바닷가 절 해동용궁사, 송정에서 점심과 카페
+    items:
+      - {time: "09:00", stay: 10, place: hotel, what: 체크아웃, 짐은 숙소에 맡기기}
+      - {time: "09:40", stay: 90, place: yonggungsa, what: 바다 절 둘러보기, note: 입구에서 계단 108개, go: {mode: 택시, minutes: 30}}
+      - {time: "11:40", stay: 80, place: songjeong, what: 해변 점심과 카페, go: {mode: 택시, minutes: 15}}
+      - {time: "13:30", stay: 15, place: hotel, what: 짐 찾기, go: {mode: 택시, minutes: 25}}
+      - {time: "14:45", stay: 0, place: busan_sta, what: 부산역 도착, go: {mode: 지하철, minutes: [50, 60], depart: "13:45"}}
+
+checklist:
+  - {when: D-30, item: KTX 왕복 예매 (금 오전 도착, 일 17시대 출발)}
+  - {when: D-7, item: 블루라인파크 해변열차 토요일이 아니면 현장 발권, 걱정되면 온라인 예매}
+  - {when: D-7, item: 숙소 짐 보관 되는지 확인 (첫날, 마지막 날)}
+  - {when: D-1, item: 편한 신발 (감천문화마을, 용궁사 계단)}
+  - {when: 당일, item: 자갈치시장 휴무일(첫째·셋째·다섯째 화요일) 아닌지 다시 보기}
+
+tips:
+  - title: 원도심은 택시가 편하다
+    body: 감천문화마을, 자갈치, 흰여울은 서로 가깝지만 언덕이 많다. 둘이면 택시비가 버스와 크게 다르지 않다.
+
+emergency:
+  hotel: hotel
+  police: "112"
+  ambulance: "119"
+
+# 한 장 그림 아래 사진 띠(정보성: 특정 가게를 추천하지 않는다)
+strips:
+  - title: 부산에서 먹어 볼 것
+    icon: 식사
+    items:
+      - {name: 돼지국밥, sub: 부산 대표 국밥, photo: food_gukbap}
+      - {name: 밀면, sub: 시원한 부산식 냉면, photo: food_milmyeon}
+      - {name: 씨앗호떡, sub: 씨앗·견과 든 호떡, photo: food_hotteok}
+  - title: 시간 나면 더
+    icon: 관광
+    items:
+      - {name: 태종대, sub: 영도 해안 절벽, photo: more_taejongdae}
+      - {name: 오륙도 스카이워크, sub: 바다 위 유리 전망대, photo: more_oryukdo}

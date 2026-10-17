@@ -1,0 +1,212 @@
+# 예시 여행 3: 아이 둘 가족 오사카 3박 4일 (지어낸 여행자, 장소 정보는 2026-10-09 웹 확인)
+trip:
+  title: 아이랑 신나는 오사카
+  kicker: 아이 둘과 함께하는
+  tagline: 놀이공원, 수족관, 성, 먹거리 3박 4일
+  destination: 일본 오사카
+  start: 2026-11-21
+  end: 2026-11-24
+  currency: JPY
+  checked: 2026-10-09
+  stale_days: 60
+  header_photo: header
+  poster_kicker: 아이 둘과 함께하는
+  poster_title: 오사카 3박 4일 여행 일정
+  note_card: [놀이공원 하루, 성과 수족관, 맛있는 거 많이, '낮잠도 꼭 :)']
+  photo_dir: photos
+  audits: ["2026-10-09 공개 자료 원문 대조"]
+
+travelers:
+  - {label: 어른 1, age: 40}
+  - {label: 어른 2, age: 38}
+  - {label: 아이 1, age: 9}
+  - {label: 아이 2, age: 6, notes: 키가 작아 놀이기구 키 제한에 걸릴 수 있음}
+
+holidays:
+  - {date: 2026-11-23, name: 근로감사의 날}
+
+arrival:
+  date: 2026-11-21
+  time: "10:00"
+  place: kix
+  note: (예시 시각) 인천 출발, 간사이공항 도착 (항공편은 항공권으로 확인)
+
+departure:
+  date: 2026-11-24
+  time: "15:30"
+  place: kix
+  arrive_by: "13:00"
+  buffer_min: 30
+  note: (예시 시각) 출발 터미널은 항공권으로 확인
+
+places:
+  kix:
+    name: 간사이공항
+    local: 関西国際空港
+    kind: 공항
+    lat: 34.4320
+    lon: 135.2304
+    coord_note: 위키데이터 Q193682 와 161m (2026-10-10 확인)
+    map: false
+    checked: 2026-10-09
+  hotel:
+    name: 예시 숙소 (난바역 근처)
+    local: 例のホテル なんば
+    kind: 숙소
+    coord_note: 동네 대표점(공공장소) 좌표 — 실제 숙소가 아닌 예시
+    lat: 34.6627
+    lon: 135.5010
+    address_local: 大阪市中央区難波（例）
+    phone: "+81-6-0000-0000 (예시)"
+    checked: 2026-10-09
+  namba:
+    name: 난바역
+    local: 難波駅
+    kind: 교통
+    icon: 지하철
+    lat: 34.6650
+    lon: 135.5010
+    base: true
+    checked: 2026-10-09
+  kuromon:
+    name: 구로몬시장
+    photo: kuromon
+    local: 黒門市場
+    kind: 식사
+    icon: 시장
+    lat: 34.6655
+    lon: 135.5068
+    coord_note: 위키데이터 Q10855506 과 25m (2026-10-10 확인)
+    hours: ["09:00", "17:00"]
+    note: 가게마다 다르고 일요일과 공휴일에 쉬는 가게가 많다. 토요일 점심은 괜찮다
+    source: https://rurubu.jp/andmore/spot/80028577
+    checked: 2026-10-09
+  dotonbori:
+    name: 도톤보리
+    photo: dotonbori
+    local: 道頓堀
+    kind: 식사
+    icon: 시장
+    lat: 34.6687
+    lon: 135.5013
+    coord_note: 위키데이터 Q964876 과 13m (2026-10-10 확인)
+    open_air: true
+    note: 타코야키, 오코노미야키. 밤에 사람이 많으니 아이 손 꼭 잡기
+    checked: 2026-10-09
+  usj:
+    name: 유니버설 스튜디오 재팬
+    photo: usj
+    local: ユニバーサル・スタジオ・ジャパン
+    kind: 관광
+    icon: 테마파크
+    lat: 34.6654
+    lon: 135.4323
+    coord_note: 위키데이터 Q1375103 과 101m (2026-10-10 확인)
+    reservation: {required: true, status: 일부 완료, note: (예시) 입장권은 샀다고 가정. 익스프레스 패스는 아직 안 삼}
+    hours: ["08:30", "21:30"]
+    note: 11/22 공식 달력 08:30~21:30(바뀔 수 있어 전날 다시 확인). 닌텐도 월드 구역은 당일 정리권·추첨권이 필요할 수 있고 공식 앱으로만 받는다(2026-01-05부터). 마리오카트는 키 107cm 이상만, 122cm 미만은 보호자 동반. 6세 아이 키를 미리 재 두기
+    source: https://www.usj.co.jp/web/ja/jp/attractions/mario-kart-koopas-challenge
+    checked: 2026-10-09
+  osaka_castle_park:
+    name: 오사카성 공원
+    photo: osaka_castle_park
+    local: 大阪城公園
+    kind: 관광
+    icon: 공원
+    lat: 34.6850
+    lon: 135.5260
+    coord_note: 위키데이터 Q150118 과 265m(공원 안) (2026-10-10 확인)
+    open_air: true
+    checked: 2026-10-09
+  tenshukaku:
+    name: 오사카성 천수각
+    photo: tenshukaku
+    local: 大阪城天守閣
+    kind: 관광
+    icon: 전망대
+    lat: 34.6873
+    lon: 135.5262
+    coord_note: 위키데이터 Q96338884 와 30m (2026-10-10 확인)
+    hours: ["09:00", "18:00"]
+    note: 입장 마감 17:30(붐비면 더 일찍 매표 마감). 어른 1200엔(2025-04부터), 중학생 이하 무료. 엘리베이터 있음
+    source: https://www.osakacastle.net/guide/
+    checked: 2026-10-09
+  kaiyukan:
+    name: 가이유칸 수족관
+    photo: kaiyukan
+    local: 海遊館
+    kind: 관광
+    icon: 동물원
+    lat: 34.6545
+    lon: 135.4290
+    hours: ["09:00", "20:00"]
+    note: 11/23 은 공식 달력상 09:00~20:00. 날마다 시간이 달라 가기 전 공식 달력 확인. 마지막 입장 시각은 공식 원문에서 못 찾음(가기 전 확인)
+    source: https://www.kaiyukan.com/info/hours/
+    checked: 2026-10-09
+
+days:
+  - date: 2026-11-21
+    title: 난바와 도톤보리
+    subtitle: 도착하면 시장 점심, 낮잠 자고 저녁엔 도톤보리
+    items:
+      - {time: "10:00", stay: 60, place: kix, what: 입국과 짐 찾기}
+      - {time: "12:10", stay: 20, place: hotel, what: 짐 맡기기, go: {mode: 전철, minutes: 60}}
+      - {time: "12:40", stay: 70, place: kuromon, what: 시장 점심, go: {mode: 걷기, minutes: 10}}
+      - {time: "14:00", stay: 120, place: hotel, what: 체크인과 낮잠, go: {mode: 걷기, minutes: 10}}
+      - {time: "16:10", stay: 150, place: dotonbori, what: 저녁과 거리 구경, go: {mode: 걷기, minutes: 10}}
+      - {time: "18:50", stay: 0, place: hotel, what: 숙소, go: {mode: 걷기, minutes: 10}}
+  - date: 2026-11-22
+    title: 유니버설 스튜디오
+    subtitle: 문 열기 전에 도착해서 하루 종일 놀이공원
+    photos: [{photo: usj_hp, name: 해리포터 구역}]
+    items:
+      - {time: "08:30", stay: 570, place: usj, what: 하루 종일 놀이공원(08:00쯤 문 앞 도착해 줄서기), note: 익스프레스 패스가 없으면 인기 기구는 아침 일찍. 닌텐도 월드 정리권은 들어가자마자 앱으로, alt: 아이가 지치면 오후에 숙소로, go: {mode: 전철, minutes: 40}}
+      - {time: "18:50", stay: 0, place: hotel, what: 숙소, go: {mode: 전철, minutes: 40}}
+  - date: 2026-11-23
+    title: 오사카성과 수족관 (공휴일)
+    subtitle: 오전엔 성, 점심 뒤 쉬고, 오후에 수족관
+    items:
+      - {time: "09:30", stay: 60, place: osaka_castle_park, what: 공원 산책, go: {mode: 전철, minutes: 25}}
+      - {time: "10:35", stay: 70, place: tenshukaku, what: 성 안 전시와 전망대, note: 공휴일이라 붐빈다. 입장 줄이 길면 공원만, go: {mode: 걷기, minutes: 5}}
+      - {time: "12:20", stay: 100, place: hotel, what: 점심 뒤 숙소에서 쉬기, go: {mode: 전철, minutes: 35}}
+      - {time: "14:40", stay: 150, place: kaiyukan, what: 수족관, go: {mode: 전철, minutes: 35}}
+      - {time: "17:45", stay: 0, place: hotel, what: 숙소와 저녁, go: {mode: 전철, minutes: 35}}
+  - date: 2026-11-24
+    title: 집으로
+    subtitle: 체크아웃하고 간사이공항으로
+    photos: [{photo: kix, name: 간사이공항 1터미널}]
+    items:
+      - {time: "10:00", stay: 15, place: hotel, what: 체크아웃}
+      - {time: "12:10", stay: 0, place: kix, what: 공항 도착, go: {mode: 전철, minutes: [45, 60, 70], estimated: true, depart: "10:30"}}
+
+checklist:
+  - {when: D-30, item: 항공권, 숙소, 유니버설 스튜디오 입장권 (예시에서는 산 것으로 가정), done: true}
+  - {when: D-14, item: 익스프레스 패스 살지 정하기 (주말이라 붐빔)}
+  - {when: D-7, item: 작은 아이 키 재기 (마리오카트 107cm)}
+  - {when: D-7, item: 유니버설 스튜디오 11/22 운영시간 공식 달력으로 확인}
+  - {when: D-1, item: 아이 여권 둘, 상비약, 여벌 옷}
+
+tips:
+  - title: 공휴일은 붐빈다
+    body: 11/23 은 일본 공휴일이라 오사카성과 수족관이 붐빈다. 수족관은 오후 늦게 가면 덜 붐빈다.
+
+emergency:
+  hotel: hotel
+  police: "110"
+  ambulance: "119 (구급, 화재)"
+  embassy: {name: 주오사카 대한민국 총영사관, phone: "+81-6-4256-2345", address_local: 大阪市中央区久太郎町2-5-13}  # 외교부 총영사관 누리집, 2026-10-09 확인
+  consular_call: "+82-2-3210-0404 (영사콜센터, 24시간)"
+
+# 한 장 그림 아래 사진 띠(정보성: 특정 가게를 추천하지 않는다)
+strips:
+  - title: 오사카에서 먹어 볼 것
+    icon: 식사
+    items:
+      - {name: 다코야키, sub: 문어 든 동그란 반죽 구이, photo: food_takoyaki}
+      - {name: 오코노미야키, sub: 철판에 굽는 부침, photo: food_okonomiyaki}
+      - {name: 구시카쓰, sub: 꼬치 튀김, photo: food_kushikatsu}
+  - title: 시간 나면 더
+    icon: 관광
+    items:
+      - {name: 덴포잔 대관람차, sub: 수족관 옆 관람차, photo: more_tempozan}
+      - {name: 신세카이, sub: 쓰텐카쿠 전망탑 거리, photo: more_tsutenkaku, pos: center 15%}

@@ -1,0 +1,248 @@
+# 예시 여행 2: 부모님 모시고 제주 2박 3일 (지어낸 여행자, 장소 정보는 2026-10-09 웹 확인)
+trip:
+  title: 부모님과 쉬엄쉬엄 제주
+  kicker: 부모님 모시고
+  tagline: 덜 걷고 바다 많이 보는 2박 3일
+  destination: 제주
+  start: 2026-11-20
+  end: 2026-11-22
+  currency: KRW
+  checked: 2026-10-09
+  stale_days: 60
+  audits: ["2026-10-09 공개 자료 원문 대조"]
+  header_photo: header
+  poster_kicker: 부모님과 함께하는
+  poster_title: 제주 2박 3일 여행 일정
+  note_card: [부모님 걸음에 맞춘, 제주 2박 3일, 계단은 적게, '바다는 많이 :)']
+  photo_dir: photos
+
+travelers:
+  - {label: 어른 1, age: 46}
+  - {label: 어른 2, age: 44}
+  - {label: 어르신 1, age: 74, notes: 무릎이 안 좋아 계단과 오래 걷기 힘듦}
+  - {label: 어르신 2, age: 72, notes: 부드러운 음식}
+
+holidays: []
+
+arrival:
+  date: 2026-11-20
+  time: "09:30"
+  place: cju
+  note: (예시 시각) 김포 출발, 제주공항 도착 뒤 렌터카 수령. 항공편은 항공권으로 확인
+
+departure:
+  date: 2026-11-22
+  time: "18:10"
+  place: cju
+  arrive_by: "16:30"
+  buffer_min: 30
+  note: (예시 시각) 렌터카 반납 포함 16:30 까지 공항. 항공편은 항공권으로 확인
+
+places:
+  cju:
+    name: 제주공항
+    local: 제주국제공항
+    kind: 공항
+    lat: 33.5070
+    lon: 126.4929
+    coord_note: 위키데이터 Q482497 과 581m(공항 부지 중심 vs 터미널) (2026-10-10 확인)
+    map: false
+    checked: 2026-10-09
+  hotel:
+    name: 예시 숙소 (제주시 노형동)
+    local: 예시 숙소
+    kind: 숙소
+    coord_note: 동네 대표점(공공장소) 좌표 — 실제 숙소가 아닌 예시
+    lat: 33.4850
+    lon: 126.4810
+    address_local: 제주특별자치도 제주시 노형동 일대 (예)
+    phone: "064-000-0000 (예시)"
+    note: 엘리베이터 있고 주차장에서 로비까지 계단 없는 곳으로
+    checked: 2026-10-09
+  hamdeok:
+    name: 함덕해수욕장
+    local: 함덕해수욕장
+    kind: 관광
+    photo: hamdeok
+    icon: 공원
+    lat: 33.5431
+    lon: 126.6695
+    open_air: true
+    note: 주차장 바로 앞이 해변. 데크 산책로가 평지라 짧게 걷기 좋다
+    checked: 2026-10-09
+  hamdeok_food:
+    name: 함덕 해변 앞 식당가
+    local: 함덕 식당가
+    kind: 식사
+    lat: 33.5440
+    lon: 126.6720
+    open_air: true
+    note: 식당마다 영업시간이 다르다. 고기국수, 전복죽처럼 부드러운 메뉴로
+    checked: 2026-10-09
+  gwangchigi:
+    name: 광치기해변
+    local: 광치기해변
+    kind: 관광
+    photo: gwangchigi
+    icon: 공원
+    lat: 33.4510
+    lon: 126.9203
+    open_air: true
+    note: 성산일출봉이 정면으로 보이는 해변. 바위가 미끄러우니 주차장 쪽에서만 보기
+    source: https://www.trvlogue.com/ko/jeju-east-coast-sunrise
+    checked: 2026-10-09
+  seongsan:
+    name: 성산일출봉 입구 광장
+    local: 성산일출봉
+    kind: 관광
+    photo: seongsan
+    icon: 전망대
+    lat: 33.4588
+    lon: 126.9403
+    open_air: true
+    note: 정상은 계단이 많아 오르지 않는다. 입구 광장에서 올려다보기와 사진만
+    checked: 2026-10-09
+  osulloc:
+    name: 오설록 티뮤지엄
+    local: 오설록 티뮤지엄
+    kind: 관광
+    photo: osulloc
+    icon: 공원
+    lat: 33.3061
+    lon: 126.2895
+    hours: ["09:00", "18:00"]
+    note: 동절기 09:00~18:00, 연중무휴, 입장 무료, 주차 무료. 녹차밭은 건물 앞 평지만 걷기
+    source: https://www.ktriptips.com/kor/culture/2660802
+    checked: 2026-10-09
+  hyeopjae_food:
+    name: 협재 해변 앞 식당가
+    local: 협재 식당가
+    kind: 식사
+    lat: 33.3950
+    lon: 126.2410
+    open_air: true
+    note: 식당마다 영업시간이 다르다. 전복죽, 갈치조림(맵지 않게)
+    checked: 2026-10-09
+  hyeopjae:
+    name: 협재해수욕장
+    local: 협재해수욕장
+    kind: 관광
+    photo: hyeopjae
+    icon: 공원
+    lat: 33.3940
+    lon: 126.2396
+    open_air: true
+    note: 주차장에서 해변까지 가깝다. 비양도가 보이는 쪽 벤치에서 쉬기
+    checked: 2026-10-09
+  hallim_park:
+    name: 한림공원
+    local: 한림공원
+    kind: 관광
+    photo: hallim_park
+    icon: 공원
+    lat: 33.3893
+    lon: 126.2390
+    hours: ["09:00", "16:30"]
+    note: 매표 마감 11~1월 16:30, 2~5월 17:00(일몰에 따라 ±30분). 휠체어 무료 대여. 구역마다 경사·계단이 달라 평지 동선은 가기 전 확인
+    source: https://www.hallimpark.com/90
+    checked: 2026-10-09
+  yongduam:
+    name: 용두암
+    local: 용두암
+    kind: 관광
+    photo: yongduam
+    icon: 전망대
+    lat: 33.5162
+    lon: 126.5120
+    open_air: true
+    note: 주차장 옆 전망 자리에서 보면 된다. 아래 바위로는 내려가지 않기
+    checked: 2026-10-09
+  dongmun:
+    name: 동문재래시장
+    local: 제주동문시장
+    kind: 식사
+    photo: dongmun
+    icon: 시장
+    lat: 33.5123
+    lon: 126.5267
+    hours: ["08:00", "21:00"]
+    note: 시장 안에서 점심(고기국수, 전복죽). 주차 30분 무료. 점포마다 일찍 닫기도 한다
+    source: https://www.ktriptips.com/kor/shopping/1013246
+    checked: 2026-10-09
+  iho:
+    name: 이호테우해변
+    local: 이호테우해변
+    kind: 관광
+    photo: iho
+    icon: 공원
+    lat: 33.4977
+    lon: 126.4530
+    open_air: true
+    note: 말 모양 등대. 공항 가는 길에 들르기 좋다
+    checked: 2026-10-09
+
+days:
+  - date: 2026-11-20
+    title: 동쪽 바다
+    subtitle: 에메랄드빛 함덕과 성산일출봉, 걷기는 짧게
+    items:
+      - {time: "09:30", stay: 60, place: cju, what: 도착, 렌터카 받기}
+      - {time: "11:15", stay: 45, place: hamdeok, what: 데크 따라 짧게 산책, go: {mode: 차, minutes: 40}}
+      - {time: "12:05", stay: 70, place: hamdeok_food, what: 고기국수나 전복죽 점심, go: {mode: 걷기, minutes: 5}}
+      - {time: "13:55", stay: 50, place: gwangchigi, what: 성산일출봉 바라보기, go: {mode: 차, minutes: 40}}
+      - {time: "14:55", stay: 40, place: seongsan, what: 입구 광장에서 사진, note: 정상은 오르지 않는다, go: {mode: 차, minutes: 10}}
+      - {time: "17:00", stay: 0, place: hotel, what: 숙소에서 쉬기, alt: 피곤하시면 광치기해변만 보고 바로 숙소로, go: {mode: 차, minutes: 75}}
+  - date: 2026-11-21
+    title: 서쪽 차밭과 바다
+    subtitle: 녹차밭 산책, 협재 바다 보며 쉬고 정원 한 바퀴
+    items:
+      - {time: "10:00", stay: 90, place: osulloc, what: 차 박물관과 앞마당 녹차밭, go: {mode: 차, minutes: 55}}
+      - {time: "12:00", stay: 60, place: hyeopjae_food, what: 점심, go: {mode: 차, minutes: 25}}
+      - {time: "13:10", stay: 40, place: hyeopjae, what: 바다 보며 벤치에서 쉬기, go: {mode: 걷기, minutes: 5}}
+      - {time: "14:00", stay: 90, place: hallim_park, what: 정원 산책, note: 입구에서 휠체어 무료 대여, go: {mode: 차, minutes: 5}}
+      - {time: "16:30", stay: 0, place: hotel, what: 숙소에서 쉬고 저녁은 숙소 근처, go: {mode: 차, minutes: 50}}
+  - date: 2026-11-22
+    title: 제주시 천천히
+    subtitle: 용두암 보고 시장 구경, 공항 가는 길에 말 등대
+    items:
+      - {time: "09:30", stay: 10, place: hotel, what: 체크아웃}
+      - {time: "10:00", stay: 40, place: yongduam, what: 전망 자리에서 보기, go: {mode: 차, minutes: 20}}
+      - {time: "11:00", stay: 100, place: dongmun, what: 시장 구경과 점심, go: {mode: 차, minutes: 10}}
+      - {time: "13:10", stay: 60, place: iho, what: 말 등대 보고 쉬기, go: {mode: 차, minutes: 20}}
+      - {time: "15:10", stay: 0, place: cju, what: 렌터카 반납과 공항 도착, go: {mode: 차, minutes: [20, 30, 40], estimated: true, depart: "14:30"}}
+
+checklist:
+  - {when: D-30, item: 항공권, 렌터카 (트렁크 큰 차, 휠체어 실을 수 있게)}
+  - {when: D-7, item: 숙소에 엘리베이터와 계단 없는 동선 다시 확인}
+  - {when: D-1, item: 무릎 보호대, 상비약, 얇은 겉옷}
+  - {when: 당일, item: 한림공원은 16:30 전에 표 사기}
+
+tips:
+  - title: 걷는 거리는 주차장 기준으로
+    body: 이 일정의 장소는 모두 주차장에서 가까운 곳만 골랐다. 정상, 바위, 긴 산책로는 사진으로만.
+
+emergency:
+  hotel: hotel
+  police: "112"
+  ambulance: "119"
+
+# 한 장 그림 아래 사진 띠(정보성: 특정 가게를 추천하지 않는다)
+strips:
+  - title: 제주에서 먹어 볼 것
+    icon: 식사
+    items:
+      - {name: 고기국수, sub: 돼지고기 국수, photo: food_gogiguksu}
+      - {name: 전복죽, sub: 부드러워 아침에 좋음, photo: food_jeonbokjuk}
+      - {name: 갈치조림, sub: 제주 은갈치, photo: food_galchi}
+      - {name: 오메기떡, sub: 차조 떡, 간식, photo: buy_omegi}
+  - title: 사 올 것
+    icon: 쇼핑
+    items:
+      - {name: 한라봉, sub: 제주 대표 귤, photo: buy_hallabong}
+      - {name: 감귤, sub: 11월 수확철, photo: buy_tangerine}
+      - {name: 녹차, sub: 오설록에서, photo: buy_greentea}
+  - title: 시간 나면 더
+    icon: 관광
+    items:
+      - {name: 섭지코지, sub: 성산 옆 해안 산책, photo: more_seopjikoji}
+      - {name: 천지연폭포, sub: 서귀포 폭포, photo: more_cheonjiyeon}

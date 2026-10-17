@@ -1,0 +1,326 @@
+# 여행 데이터 파일 (trip-planner v0.1 샘플)
+# 모든 사실은 이 파일에 딱 한 번만 적는다. 인포그래픽, 웹앱, 지도, 시트는 전부 여기서 만든다.
+# 샘플이다: 날짜(2027년 7월)와 여행자 나이는 지어낸 값이고, 숙소는 역(공공장소) 좌표로 둔 예시다.
+#   요일 규칙이 맞게 골랐다: 7/19(월)이 바다의 날이라 월요일 휴원인 동물원이 열고 7/20(화)에 쉰다.
+#    영업시간과 전화번호는 2026-10-07 기준 공개 정보를 옮긴 것이라 쓰기 전에 다시 확인할 것.
+# 개인정보 없음: 사람 이름 대신 "어른 1" 처럼 적는다.
+
+trip:
+  title: 도쿄 가족여행
+  destination: 일본 도쿄
+  start: 2027-07-17
+  end: 2027-07-20
+  currency: JPY
+  checked: 2026-10-07          # 이 파일의 사실을 마지막으로 확인한 날
+  stale_days: 400              # 장소 확인일이 여행 시작보다 이만큼 넘게 오래되면 경고 (실제 여행은 30 쯤. 샘플이라 크게)
+
+travelers:
+  - {label: 어른 1, age: 41}
+  - {label: 어른 2, age: 39}
+  - {label: 아이 1, age: 9, notes: 매운 음식 못 먹음}
+
+holidays:
+  - {date: 2027-07-19, name: 바다의 날}
+
+arrival:                         # 도착은 하나만
+  date: 2027-07-17
+  time: "07:30"
+  place: haneda
+  note: 하네다 공항 입국 (항공편은 항공권으로 확인)
+
+departure:                       # 귀국은 하나만. 두 안을 섞지 않는다
+  date: 2027-07-20
+  time: "17:00"
+  place: narita
+  arrive_by: "14:30"             # 공항에 이 시각까지 도착
+  buffer_min: 30                 # 공항 도착 여유 최소
+  note: 출발 터미널은 항공권으로 확인
+
+places:
+  hotel:
+    name: 예시 숙소 (다이몬역 근처)
+    local: 例のホテル 大門
+    kind: 숙소
+    lat: 35.656600              # 다이몬역 좌표 (예시 숙소라 공공장소에 둔다)
+    lon: 139.755300
+    address_local: 東京都港区芝大門（例）
+    phone: "+81-3-0000-0000 (예시)"
+    checked: 2026-10-07
+  haneda:
+    name: 하네다 공항
+    local: 羽田空港
+    kind: 공항
+    lat: 35.549393
+    lon: 139.779839
+    map: false
+    checked: 2026-10-07
+  narita:
+    name: 나리타 공항
+    local: 成田空港
+    kind: 공항
+    lat: 35.770178
+    lon: 140.384322
+    map: false
+    checked: 2026-10-07
+  akihabara_sta:
+    name: 아키하바라역
+    local: 秋葉原駅
+    kind: 교통
+    lat: 35.698383
+    lon: 139.773072
+    checked: 2026-10-07
+  radio_kaikan:
+    name: 라디오회관
+    local: ラジオ会館
+    kind: 쇼핑
+    lat: 35.697915
+    lon: 139.771957
+    hours: ["10:00", "20:00"]
+    checked: 2026-10-07
+  marugo:
+    name: 돈카츠 마루고
+    local: とんかつ丸五
+    kind: 식사
+    lat: 35.699136
+    lon: 139.769726
+    hours: ["11:30", "20:00"]
+    closed: [월, 화]
+    checked: 2026-10-07
+  mandarake:
+    name: 만다라케 컴플렉스
+    local: まんだらけコンプレックス
+    kind: 쇼핑
+    lat: 35.700327
+    lon: 139.770499
+    hours: ["12:00", "20:00"]
+    checked: 2026-10-07
+  yodobashi:
+    name: 요도바시 Akiba
+    local: ヨドバシAkiba
+    kind: 쇼핑
+    lat: 35.698917
+    lon: 139.774798
+    hours: ["09:30", "22:00"]
+    checked: 2026-10-07
+  zangara:
+    name: 큐슈 잔가라 아키하바라 본점
+    local: 九州じゃんがら 秋葉原本店
+    kind: 식사
+    lat: 35.700802
+    lon: 139.770672
+    hours: ["11:00", "22:00"]
+    checked: 2026-10-07
+  akabanebashi:
+    name: 아카바네바시역
+    local: 赤羽橋駅
+    kind: 교통
+    base: true                   # 숙소 근처 기준역 (지도 '숙소·기준역' 층)
+    lat: 35.654985
+    lon: 139.744002
+    checked: 2026-10-07
+  harry_potter:
+    name: 해리포터 스튜디오 도쿄
+    local: ワーナー ブラザース スタジオツアー東京
+    kind: 관광
+    icon: 스튜디오
+    lat: 35.745183
+    lon: 139.646091
+    hours: ["08:30", "22:00"]
+    reservation: {timed: true, status: 완료, slot: "10:30"}
+    checked: 2026-10-07
+  sayanoyu:
+    name: 사야노유 온천
+    local: さやの湯処
+    kind: 관광
+    icon: 온천
+    lat: 35.770772
+    lon: 139.692638
+    hours: ["10:00", "23:00"]
+    checked: 2026-10-07
+  niwanoyu:
+    name: 니와노유 온천
+    local: 庭の湯
+    kind: 관광
+    icon: 온천
+    lat: 35.744870
+    lon: 139.648720
+    hours: ["10:00", "23:00"]
+    min_age: 13
+    map: false
+    checked: 2026-10-07
+  ueno_park:
+    name: 우에노 공원
+    local: 上野恩賜公園
+    kind: 관광
+    icon: 공원
+    open_air: true               # 늘 열려 있는 곳 (영업시간 없음)
+    lat: 35.714756
+    lon: 139.773431
+    checked: 2026-10-07
+  ueno_zoo:
+    name: 우에노 동물원
+    local: 恩賜上野動物園
+    kind: 관광
+    icon: 동물원
+    lat: 35.716448
+    lon: 139.772583
+    hours: ["09:30", "17:00"]
+    closed: [월]
+    holiday_shift: true          # 휴무일이 공휴일이면 열고 다음 날 쉰다
+    checked: 2026-10-07
+  izuei:
+    name: 이즈에이 본점
+    local: 伊豆榮 本店
+    kind: 식사
+    lat: 35.709671
+    lon: 139.772691
+    hours: ["11:00", "21:00"]
+    reservation: {required: false, status: 미완료, note: 공휴일이라 예약 권장}
+    checked: 2026-10-07
+  ameyoko:
+    name: 아메요코
+    local: アメ横
+    kind: 쇼핑
+    open_air: true
+    note: 점포마다 영업시간이 다르다
+    lat: 35.710068
+    lon: 139.774601
+    checked: 2026-10-07
+  yamashiroya:
+    name: 야마시로야
+    local: ヤマシロヤ
+    kind: 쇼핑
+    lat: 35.711331
+    lon: 139.775282
+    hours: ["10:00", "21:30"]
+    checked: 2026-10-07
+  nikinokashi:
+    name: 니키노카시 제1영업소
+    local: 二木の菓子 第一営業所
+    kind: 쇼핑
+    lat: 35.708353
+    lon: 139.774476
+    hours: ["10:00", "19:00"]
+    checked: 2026-10-07
+  kinaseya:
+    name: 키나세야 아트레 우에노점
+    local: 喜奈世家 アトレ上野
+    kind: 식사
+    lat: 35.712258
+    lon: 139.776484
+    hours: ["11:00", "22:00"]
+    checked: 2026-10-07
+  hamamatsucho:
+    name: 하마마쓰초역 (코인로커)
+    local: 浜松町駅
+    kind: 교통
+    icon: 코인로커
+    lat: 35.655381
+    lon: 139.757129
+    checked: 2026-10-07
+  tokyo_tower:
+    name: 도쿄타워
+    local: 東京タワー
+    kind: 관광
+    icon: 전망대
+    lat: 35.658580
+    lon: 139.745433
+    hours: ["09:00", "22:30"]
+    checked: 2026-10-07
+  zojoji:
+    name: 조조지
+    local: 増上寺
+    kind: 관광
+    icon: 절
+    lat: 35.657479
+    lon: 139.748293
+    hours: ["09:00", "17:00"]
+    checked: 2026-10-07
+  zojoji_mausoleum:
+    name: 조조지 도쿠가와 묘소
+    local: 増上寺 徳川将軍家墓所
+    kind: 관광
+    icon: 절
+    lat: 35.657100
+    lon: 139.747700
+    hours: ["10:00", "16:00"]
+    closed: [화]
+    map: false
+    checked: 2026-10-07
+  sarashina:
+    name: 사라시나 호리이 본점
+    local: 総本家 更科堀井
+    kind: 식사
+    lat: 35.656832
+    lon: 139.732901
+    hours: ["11:30", "20:30"]
+    checked: 2026-10-07
+
+days:
+  - date: 2027-07-17
+    title: 아키하바라
+    items:
+      - {time: "07:30", stay: 40, place: haneda, what: 입국, note: 입국 심사와 짐 찾기}
+      - {time: "09:00", stay: 20, place: hotel, what: 짐 맡기기, go: {mode: 전철, minutes: 45}}
+      - {time: "10:00", stay: 80, place: radio_kaikan, what: 피규어와 굿즈 구경, go: {mode: 전철, minutes: 30}}
+      - {time: "11:30", stay: 60, place: marugo, what: 돈카츠 점심, alt: 줄이 길면 요도바시 8층 식당가, go: {mode: 걷기, minutes: 5}}
+      - {time: "13:00", stay: 80, place: mandarake, what: 중고 피규어와 만화, go: {mode: 걷기, minutes: 5}}
+      - {time: "14:30", stay: 150, place: yodobashi, what: 게임과 장난감, go: {mode: 걷기, minutes: 8}}
+      - {time: "17:30", stay: 60, place: zangara, what: 돈코츠 라멘 저녁, note: 아이 몫은 맵지 않은 기본 맛, go: {mode: 걷기, minutes: 8}}
+      - {time: "19:10", stay: 0, place: hotel, what: 숙소 체크인과 쉬기, go: {mode: 전철, minutes: 35}}
+  - date: 2027-07-18
+    title: 해리포터 스튜디오와 온천
+    items:
+      - {time: "08:50", stay: 5, place: akabanebashi, what: 오에도선 히카리가오카 방향, go: {mode: 걷기, minutes: 5}}
+      - {time: "09:50", stay: 330, place: harry_potter, what: 스튜디오 관람과 점심 (10:30 입장), note: 시간 지정 입장권, go: {mode: 전철, minutes: 55}}
+      - {time: "16:15", stay: 150, place: sayanoyu, what: 온천과 저녁, alt: 관람이 길어지면 온천을 빼고 숙소로. 니와노유는 13세 미만 입장 불가라 뺐다, go: {mode: 전철과 버스, minutes: 50}}
+      - {time: "19:50", stay: 0, place: hotel, what: 숙소, go: {mode: 전철, minutes: 60}}
+  - date: 2027-07-19
+    title: 우에노
+    items:
+      - {time: "09:00", stay: 25, place: ueno_park, what: 동물원 들어가기 전 산책, go: {mode: 전철, minutes: 30}}
+      - {time: "09:30", stay: 130, place: ueno_zoo, what: 동물원 주요 구역, note: 공휴일이라 열고 다음 날(7/20) 쉰다, go: {mode: 걷기, minutes: 5}}
+      - {time: "12:00", stay: 60, place: izuei, what: 장어덮밥 점심, go: {mode: 걷기, minutes: 10}}
+      - {time: "13:15", stay: 45, place: ameyoko, what: 시장 구경, go: {mode: 걷기, minutes: 5}}
+      - {time: "14:10", stay: 45, place: yamashiroya, what: 장난감과 캐릭터 굿즈, go: {mode: 걷기, minutes: 5}}
+      - {time: "15:05", stay: 30, place: nikinokashi, what: 과자와 기념품, go: {mode: 걷기, minutes: 5}}
+      - {time: "17:30", stay: 60, place: kinaseya, what: 헤기소바와 튀김 저녁, alt: 숙소에서 쉬다가 다시 나와도 됨, go: {mode: 걷기, minutes: 8}}
+      - {time: "19:10", stay: 0, place: hotel, what: 숙소, go: {mode: 전철, minutes: 35}}
+  - date: 2027-07-20
+    title: 숙소 주변과 귀국
+    items:
+      - {time: "09:00", stay: 20, place: hamamatsucho, what: 체크아웃 뒤 코인로커에 짐 맡기기, note: 빈자리와 캐리어 크기는 현장 확인, go: {mode: 택시, minutes: 10}}
+      - {time: "09:30", stay: 60, place: tokyo_tower, what: 메인 데크, alt: 줄이 길면 외관 사진만, go: {mode: 걷기, minutes: 10}}
+      - {time: "10:40", stay: 40, place: zojoji, what: 경내 산책, note: 도쿠가와 묘소는 화요일 휴무라 안 들어간다, go: {mode: 걷기, minutes: 5}}
+      - {time: "11:30", stay: 35, place: sarashina, what: 소바 점심, go: {mode: 택시, minutes: 10}}
+      - {time: "12:15", stay: 15, place: hamamatsucho, what: 짐 찾기, go: {mode: 택시, minutes: 10}}
+      - {time: "14:30", stay: 0, place: narita, what: 공항 도착, go: {mode: 전철 또는 공항버스, minutes: [60, 75, 90], estimated: true, depart: "12:30"}}
+
+checklist:
+  - {when: D-30, item: 항공권과 숙소 예약, done: true}
+  - {when: D-30, item: 해리포터 스튜디오 시간 지정 입장권 (7/18 10:30), done: true}
+  - {when: D-7, item: 이즈에이 예약 여부 정하기 (공휴일)}
+  - {when: D-7, item: 데이터 eSIM 또는 로밍}
+  - {when: D-7, item: 엔화 환전 또는 트래블 카드}
+  - {when: D-1, item: 여권 셋, 충전기, 보조배터리}
+  - {when: D-1, item: 하마마쓰초역 코인로커 위치 다시 보기}
+  - {when: 당일, item: 숙소 현지어 주소 화면 띄워 두기}
+
+budget:
+  - {category: 교통, item: 공항 이동 (가족), amount: 15000}
+  - {category: 입장, item: 해리포터 스튜디오, amount: 20000, paid: true}
+  - {category: 입장, item: 도쿄타워 메인 데크, amount: 3500}
+  - {category: 식사, item: 식사 하루 평균 x4, amount: 40000}
+
+tips:
+  - title: 캐리어는 26인치 이하
+    body: 기내 반입이 아니어도 지하철과 코인로커를 쓰면 큰 캐리어가 짐이 된다. 역 코인로커 큰 칸이 대개 이 크기까지다.
+  - title: 코인로커는 아침에 잡는다
+    body: 체크아웃 시각대에는 역 로커가 빨리 찬다. 못 잡으면 숙소에 맡기는 안을 둔다.
+
+emergency:
+  hotel: hotel
+  police: "110"
+  ambulance: "119 (구급, 화재)"
+  embassy: {name: 주일본 대한민국 대사관, phone: "+81-3-3455-2601", address_local: 東京都港区南麻布1-2-5}
+  consular_call: "+82-2-3210-0404 (영사콜센터, 24시간)"
