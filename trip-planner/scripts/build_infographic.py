@@ -303,7 +303,7 @@ font-size:{11*fs:.1f}px;font-weight:700;line-height:1.35;padding:7px 10px;border
               f'<div class="sub">{esc(dep_name)}에 {esc(str(dep.get("arrive_by", "")))}까지</div></div>'
               + ("" if phone else "".join(f'<div class="panel"><h4>{t}</h4>{c}</div>' for t, c in (("먹을 곳", chips("식사")), ("살 곳", chips("쇼핑"))) if c))
               + (f'<div class="panel warn" style="grid-column:{"auto" if phone else "1/-1"}"><h4>주의</h4>{"".join(f"<p>{esc(x)}</p>" for x in warn)}</div>' if warn else ""))
-    # 그림에는 사실 확인일만 싣는다. 형식 검사·독립 대조 기록은 데이터 trip.audits 와 시트 검사 탭에만 둔다
+    # 고객 그림에는 사실 확인일만. 형식 검사·독립 대조 기록은 데이터 trip.audits 와 시트 검사 탭에만 둔다(10/10 기획팀장)
     foot = (f'<div class="foot"><span>사실 확인 {esc(str(trip.get("checked", "")))} · 가기 전 다시 확인 · {"지도 © OpenStreetMap contributors" if map_uri else "지도는 좌표로 그린 개략도"}</span>'
             '</div>')
     realmap = (f'<div class="realmap"><img src="{map_uri}" alt="일정 지도"></div>' if map_uri else "")

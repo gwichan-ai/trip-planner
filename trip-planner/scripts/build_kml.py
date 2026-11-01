@@ -107,7 +107,7 @@ def build(data: dict) -> str:
 
 
 def build_layers(data: dict) -> dict[str, str]:
-    """층마다 KML 한 파일씩. 구글 내 지도는 가져오기 한 번에 층 하나만 만들 때가 있어서(실측),
+    """층마다 KML 한 파일씩. 구글 내 지도는 가져오기 한 번에 층 하나만 만들 때가 있어서(7번 지도 키트 실측 10/9),
     "숙소·기준역" 과 날짜별 층을 따로 가져올 수 있게 한다. {파일 이름: KML}"""
     import re
     import xml.etree.ElementTree as ET

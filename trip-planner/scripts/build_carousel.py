@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""인스타 넘김(캐러셀) 1080x1350 다섯 장 — 한 장 그림(build_poster)을 폰 크기로 나눈 것.
+"""인스타 넘김(캐러셀) 1080x1350 다섯 장 — 한 장 그림(build_poster) 3판을 폰 크기로 나눈 것.
 1 표지+지도 / 2~4 DAY 마다 한 장 / 5 먹어 볼 것·사 올 것·더 가볼 곳.
 글자는 1080 폭에서 가장 작은 것도 26px 이상(폰 390 폭에서 약 9.5pt). 사실·사진·출처 규칙은 build_poster 와 같다.
 
@@ -36,22 +36,28 @@ def page_html(body: str, css: str, extra_head: str = "") -> str:
             f'{extra_head}<style>{BASE_CSS}{css}</style></head><body>{body}</body></html>')
 
 
+PAGES_BEFORE = 0  # 이 넘김 앞에 따로 붙는 장 수(예: 후킹 표지). trip.pages_before 로 정한다
+
+
 HANDLE = ""  # 넘김 아래 왼쪽에 찍을 계정 이름. 여행 데이터 trip.handle(예: "@my_account")에서 읽는다
 
 
 def foot(n: int, total: int, right: str = "") -> str:
     who = f'<b>{esc(HANDLE)}</b> ' if HANDLE else ""
-    return f'<div class="foot"><span>{who}{esc(right)}</span><span>{n} / {total}</span></div>'
+    return f'<div class="foot"><span>{who}{esc(right)}</span><span>{n + PAGES_BEFORE} / {total + PAGES_BEFORE}</span></div>'
 
 
 def build(data: dict, yaml_dir: Path) -> list[str]:
-    global HANDLE
     trip = data.get("trip") or {}
+    global PAGES_BEFORE, HANDLE
     HANDLE = str(trip.get("handle") or "")
+    PAGES_BEFORE = int(trip.get("pages_before") or 0)
     ph = Photos(yaml_dir / str(trip.get("photo_dir", "photos")))
     places = tm.places(data)
     days = tm.days(data)
-    total = len(days) + 2
+    basics = data.get("basics") or {}
+    nb = (1 if (basics.get("transport") or basics.get("lodging")) else 0) + (1 if (basics.get("weather") or basics.get("packing")) else 0)
+    total = len(days) + 2 + nb
     start, end = tm.to_date(trip.get("start")), tm.to_date(trip.get("end"))
     period = f"{start.month}. {start.day}({tm.weekday_ko(start)}) ~ {end.month}. {end.day}({tm.weekday_ko(end)})"
     hotel = places.get((data.get("emergency") or {}).get("hotel"), {})
@@ -155,6 +161,9 @@ window.addEventListener('load',go);
              + foot(1, total, ("맨 위 그림은 AI(분위기용) · " if ph.is_ai(trip.get("header_photo")) else "") + "넘겨서 날짜별 일정 →") + f'<script src="{LEAFLET_JS}"></script>' + js)
     pages.append(page_html(body1, css1, f'<link rel="stylesheet" href="{LEAFLET_CSS}">'))
 
+    # ---- v2 기본 먼저: 교통·숙박 / 날씨·준비물 (10/20 "여행의 기본은 교통편, 숙박") ----
+    pages.extend(basics_pages(basics, total))
+
     # ---- 2~4. DAY ----
     css_day = """
 .dh{padding:46px 52px 18px;background:color-mix(in srgb,var(--c) 14%,#fbf4e8)}
@@ -221,7 +230,7 @@ window.addEventListener('load',go);
                 f'<span class="date">{d["date"].month}월 {d["date"].day}일 ({tm.weekday_ko(d["date"])})</span></div>'
                 f'<h2 class="jua">{esc(str(d.get("title", "")))}</h2><p>{esc(str(d.get("subtitle", "")))}</p></div>'
                 f'<div class="ph" style="grid-template-columns:repeat({max(nph, 1)},1fr)">{photos}</div><ul class="tl">{"".join(rows)}</ul>{extra}</div>'
-                + foot(d["index"] + 2, total, "사진 출처는 게시글 캡션에 · 영업시간은 가기 전에 다시 확인"))
+                + foot(d["index"] + 2 + nb, total, "사진 출처는 게시글 캡션에 · 영업시간은 가기 전에 다시 확인"))
         pages.append(page_html(body, css_day))
 
     # ---- 5. 먹을 것·살 것·더 ----
@@ -240,10 +249,66 @@ h2{margin:0;padding:52px 52px 6px;font-size:66px;color:#7c2d12}
         secs.append(f'<div class="sec"><h3 class="jua">{icon_svg({"kind": s.get("icon", "기본")}, "#E8590C", 40)}{esc(s.get("title", ""))}</h3>'
                     f'<div class="grid" style="grid-template-columns:repeat({len(items)},1fr)">{figs}</div></div>')
     src_line, _ = ph.credits()
-    body5 = (f'<h2 class="jua">여행 가서 이것도</h2>{"".join(secs)}'
+    cta = trip.get("cta")
+    cta_html = (f'<div style="position:absolute;left:44px;right:44px;bottom:80px;background:#0f766e;color:#fff;border-radius:24px;'
+                f'padding:22px 30px;font-size:36px;font-weight:800;text-align:center">{esc(str(cta))}</div>') if cta else ""
+    body5 = (f'<h2 class="jua">여행 가서 이것도</h2>{"".join(secs)}{cta_html}'
              + foot(total, total, "사진 출처·라이선스는 게시글 캡션에"))
     pages.append(page_html(body5, css5))
     return pages
+
+
+BASICS_CSS = """
+.hd{padding:46px 52px 8px}.hd .k{font-size:34px;color:#c2410c}.hd h2{margin:4px 0 0;font-size:72px;line-height:1.05;color:#7c2d12}
+.card{margin:18px 44px 0;background:#fff;border-radius:26px;padding:22px 28px;box-shadow:0 2px 10px rgba(124,45,18,.10)}
+.card h3{margin:0 0 12px;display:flex;align-items:center;gap:12px;font-size:42px;color:#0f766e}.card h3 .st{font-size:28px;color:#fff;background:#0f766e;border-radius:999px;padding:2px 16px}
+.rw{display:flex;gap:14px;font-size:30px;padding:6px 0;align-items:baseline}.rw b{flex:none;width:120px;color:#7c2d12}.rw .s{font-size:22px;color:#8a8f99;margin-left:auto;white-space:nowrap;padding-left:10px}
+.area{display:flex;gap:14px;align-items:baseline;font-size:29px;padding:7px 0;border-top:2px dashed #f0dcc0}.area:first-of-type{border-top:0}
+.area b{flex:none;width:200px}.tag{flex:none;font-size:24px;font-weight:800;border-radius:999px;padding:2px 14px;background:#fff7e6;color:#c2410c;border:2px solid #f3c98b}.tag.on{background:#0f766e;color:#fff;border-color:#0f766e}
+.small{font-size:24px;color:#6b5a4c;margin-top:8px;line-height:1.35}
+.temp{display:flex;gap:18px;align-items:center}.temp .big{font-size:84px;font-weight:900;color:#c2410c;line-height:1}.temp .big small{font-size:40px;color:#0369a1}
+.temp .t2{font-size:30px;line-height:1.35}
+.pk{display:grid;grid-template-columns:1fr 1fr;gap:10px 22px}.pk div{font-size:29px;display:flex;gap:10px;align-items:baseline}.pk div::before{content:"✓";color:#0f766e;font-weight:900}
+.pk span{display:block;font-size:23px;color:#6b5a4c}
+"""
+
+
+def basics_pages(b: dict, total: int) -> list[str]:
+    """교통·숙박 한 장, 날씨·준비물 한 장. 값은 데이터에 있는 것만 쓴다(지어내지 않음)."""
+    out = []
+    ck = str(b.get("checked", ""))
+    n = 2
+    tr, lo = b.get("transport") or {}, b.get("lodging") or {}
+    if tr or lo:
+        h = f'<div class="hd"><div class="k jua">여행의 기본 ① ②</div><h2 class="jua">교통편부터, 숙소까지</h2></div>'
+        if tr:
+            h += (f'<div class="card"><h3 class="jua"><span class="st">①</span>{esc(str(tr.get("title", "교통")))}</h3>'
+                  + "".join(f'<div class="rw"><b>{esc(str(r.get("label", "")))}</b><span>{esc(str(r.get("when", "")))} · {esc(str(r.get("what", "")))}</span></div>' for r in tr.get("rows") or [])
+                  + "".join(f'<div class="rw"><b>{esc(str(f.get("k", "")))}</b><span>{esc(str(f.get("v", "")))}</span></div>' for f in tr.get("facts") or [])
+                  + '<div class="small">출처: ' + esc(" · ".join(str(f.get("src")) for f in tr.get("facts") or [] if f.get("src"))) + f' (확인 {esc(ck)})</div></div>')
+        if lo:
+            h += (f'<div class="card"><h3 class="jua"><span class="st">②</span>숙소 · 예산 {esc(str(lo.get("budget", "")))}</h3>'
+                  + "".join(f'<div class="area"><b>{esc(str(a.get("name", "")))}</b><span class="tag{" on" if a.get("name") == lo.get("pick") else ""}">{esc(str(a.get("fit", "")))}</span><span>{esc(str(a.get("note", "")))}</span></div>' for a in lo.get("areas") or [])
+                  + (f'<div class="rw" style="margin-top:6px"><b>왜</b><span>{esc(str(lo.get("why", "")))}</span></div>' if lo.get("why") else "")
+                  + f'<div class="small">참고 값: {esc(str(lo.get("price_ref", "")))} (확인 {esc(ck)}) · {esc(str(lo.get("note", "")))}</div></div>')
+        out.append(page_html(h + foot(n, total, "예약·결제는 직접 · 값은 날짜마다 달라요"), BASICS_CSS))
+        n += 1
+    we, pk = b.get("weather") or {}, b.get("packing") or []
+    if we or pk:
+        h = f'<div class="hd"><div class="k jua">여행의 기본 ③ 그리고 짐</div><h2 class="jua">날씨 보고, 맞춰 챙기기</h2></div>'
+        if we:
+            h += (f'<div class="card"><h3 class="jua"><span class="st">③</span>날씨 ({esc(str(we.get("mode", "")))})</h3>'
+                  f'<div class="temp"><div class="big">{esc(str(we.get("high")))}°<small> / {esc(str(we.get("low")))}°</small></div>'
+                  f'<div class="t2">낮 최고 / 아침 최저<br>{esc(str(we.get("rain_days", "")))}</div></div>'
+                  + ('<div class="rw" style="margin-top:10px;color:#0369a1;font-weight:800">☔ 비 오면 이렇게</div>' if we.get("rain_plan") else "")
+                  + "".join(f'<div class="rw"><b>DAY {esc(str(r.get("day")))}</b><span>{esc(str(r.get("text", "")))}</span></div>' for r in we.get("rain_plan") or [])
+                  + f'<div class="small">{esc(str(we.get("src", "")))} · {esc(str(we.get("recheck", "")))}</div></div>')
+        if pk:
+            h += ('<div class="card"><h3 class="jua">🎒 날씨·일정에 맞춘 준비물</h3><div class="pk">'
+                  + "".join(f'<div><p style="margin:0">{esc(str(x.get("item", "")))}<span>{esc(str(x.get("why", "")))}</span></p></div>' for x in pk)
+                  + '</div></div>')
+        out.append(page_html(h + foot(n, total, "넘겨서 날짜별 일정 →"), BASICS_CSS))
+    return out
 
 
 def render(data: dict, yaml_dir: Path, out_dir: Path) -> list[Path]:
